@@ -1,6 +1,6 @@
-## Awward_project
+## Awwwards App
 
-## By Claudine Kuradusenge
+## By Elisephan Ntakirutimana
 
 ## Description
 
