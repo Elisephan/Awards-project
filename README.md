@@ -36,7 +36,7 @@ and user visual code for writing codes
 
 ## Run
 
-Use Terminal to open the server and the brouser to run this application
+Use Terminal to open the serv and the brouser to run this application
 
 ### Behavior Driven Development (BDD)
 
