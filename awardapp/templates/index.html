@@ -1,194 +1,207 @@
-
-{% extends 'all_news/base.html' %}
-{% load bootstrap4 %}
-{% load static %}
-{% block content %}
+ {% extends 'all_news/base.html' %} {% load bootstrap4 %} {% load static %} {% block content %}
 
 <link href="https://fonts.googleapis.com/css?family=Charmonman|Dancing+Script|Kodchasan|Spirax|Abril+Fatface" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap" rel="stylesheet">
 <header>
-  <div class="header">
-    <img src="static/image/pink2.png" style="height: 50vh; width: 300vh;" id="image">
-    <div class="text">
-      <p  style="font-family: cursive; text-align: center;">Created on January 18,2020 </p>
-     
-    </div>
-    <h1 id="aw">Welcome to Award Application!!</h1>
-    <div class="bt">
-        <button class="btn btn-light" style="border-radius:25px;"><a href="{% url 'homePage' %}">visit site</a></button>
-        <!-- <button class="btn btn-outline-primary" style="border-radius:25px;">collect</button> -->
-    </div>
-    
+    <div class="header">
+        <img src="static/image/pink2.png" style="height: 50vh; width: 300vh;" id="image">
+        <div class="text">
+            <p style="font-family: cursive; text-align: center;">Created on January 23,2020 </p>
 
-    
-  </div>
+        </div>
+        <h1 id="aw">Welcome to Award Application!!</h1>
+        <div class="bt">
+            <button class="btn btn-light" style="border-radius:25px;"><a href="{% url 'homePage' %}">visit site</a></button>
+            <!-- <button class="btn btn-outline-primary" style="border-radius:25px;">collect</button> -->
+        </div>
+
+
+
+    </div>
 </header>
 <br>
 
 <br>
 
-  <div class="container">
-<divc class="row">
-  {% for image in pictures %}
-  <div class="col-md-6" width="400 px">
-    
-  <div class="card wrapper" >
-    <div class="parent" onclick="">
-      <div class="child bg-one">
-          <a href="{% url 'projects' image.id %}" ><img src="{{image.image.url}}" height="300" alt="pict" class="image card-img-top" ></a>
-  <div class="mask flex-center rgba-black-strong">
-    <!-- <a href="{% url 'projects' image.id %}" class="btn btn-outline-success" id="btv" style="border-radius:15px;">More</a> -->
-  </div>
-</div>
-</div>
-</div>
-  <div class="card-body">
-      <div>
-          <p style="font-family: sans-serif;">
-              Title: {{image.title}}</p>
-        <!-- <a  class="btn" href="{% url 'like' id=image.id%}" >
+<div class="container">
+    <divc class="row">
+        {% for image in pictures %}
+        <div class="col-md-6" width="400 px">
+
+            <div class="card wrapper">
+                <div class="parent" onclick="">
+                    <div class="child bg-one">
+                        <a href="{% url 'projects' image.id %}"><img src="{{image.image.url}}" height="300" alt="pict" class="image card-img-top"></a>
+                        <div class="mask flex-center rgba-black-strong">
+                            <!-- <a href="{% url 'projects' image.id %}" class="btn btn-outline-success" id="btv" style="border-radius:15px;">More</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <p style="font-family: sans-serif;">
+                        Title: {{image.title}}</p>
+                    <!-- <a  class="btn" href="{% url 'like' id=image.id%}" >
             <p >{{image.likes}} Likes <i class="fa fa-heart-o" ></i></p> 
         
         </a> -->
-        <p>{{image.pub_date|date:"F d,Y"}}</p>
+                    <p>{{image.pub_date|date:"F d,Y"}}</p>
+                </div>
+
+
+
+                {% for com in image.comment_set.all %}
+                <p>{{com.comment}}</p>
+                {% endfor %}
+                <p><a href="{% url 'comment' image.id %}"><i class=""" style="color: black;"></i></a>add comment...</p>
+
+            </div>
         </div>
-
-   
-  
-  {% for com in image.comment_set.all %}
-  <p>{{com.comment}}</p>
-  {% endfor %}
-  <p><a href="{% url 'comment' image.id %}"><i class=""" style="color: black;"></i></a>add comment...</p>
-
-</div>
-</div>
-  {% endfor %}
+        {% endfor %}
 </div>
 </div>
 
-  <footer style="background-color:grey;">
-  <div class="container" >
-  
-   
- 
+<footer style="background-color:grey;">
+    <div class="container">
 
-  
-     
- 
- 
-</div>
+
+
+
+
+
+
+
+    </div>
 </footer>
-  <style>
-    .parent{
-      overflow: hidden;
-      position:relative;
-      display:inline-block;
-      cursor: pointer;
+<style>
+    .parent {
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
     }
-    .child{
-      background-size: cover;
-      background-repeat: no-repeat;
-      -webkit-transition: all .5s;
-      -moz-transition: all .5s;
-      -o-transition: all .5s;
-      transition: all .5s;
+    
+    .child {
+        background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
+        transition: all .5s;
     }
-    .parent:hover .child, .parent:focus .child{
-      -ms-transform: scale(1.2);
-      -moz-transform: scale(1.2);
-      -webkit-transform: scale(1.2);
-      -o-transform: scale(1.2);
-      transform: scale(1.2);
-
+    
+    .parent:hover .child,
+    .parent:focus .child {
+        -ms-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
     }
-    .parent:hover .child:before, .parent:focus .child::before{
-      display:block;
+    
+    .parent:hover .child:before,
+    .parent:focus .child::before {
+        display: block;
     }
-    .parent:hover a , .parent:focus a{
-      display:block;
+    
+    .parent:hover a,
+    .parent:focus a {
+        display: block;
     }
-    .child::before{
-      content:"";
-      display: none;
-      position: absolute;
-      top:0;
-      left: 0;
-      background-color: black;
-      opacity: 0.6;
+    
+    .child::before {
+        content: "";
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: black;
+        opacity: 0.6;
     }
-    @media screen and(max-width: 960px){
-      .parent{width: 100%;margin:20px 0px}
-      .wrapper{padding: 20px 20px;}
+    
+    @media screen and(max-width: 960px) {
+        .parent {
+            width: 100%;
+            margin: 20px 0px
+        }
+        .wrapper {
+            padding: 20px 20px;
+        }
     }
-    #aw{
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform: translate(-50%,-50%);
-      color:white;
-      font-size:40px;
-      font-family:'Rubik', sans-serif;
+    
+    #aw {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 40px;
+        font-family: 'Rubik', sans-serif;
     }
-    .image:hover{
-        box-shadow: 0 1px 328px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.22);
+    
+    .image:hover {
+        box-shadow: 0 1px 328px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.22);
         /* transition:  .5s ease ; */
         opacity: 0.7;
-      
         overflow: hidden;
-        transform:translate(-3px);
+        transform: translate(-3px);
+    }
     
+    .container {
+        display: flex;
+        justify-content: space-between;
     }
-    .container{
-      display: flex;
-      justify-content: space-between;
+    
+    .header {
+        position: relative;
     }
-    .header{
-      position: relative;
+    
+    #btv {
+        display: none;
+        font-size: 35px;
+        color: ffffff !important;
+        font-family: sans-serif;
+        text-align: center;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 50px;
+        cursor: pointer;
     }
+    
+    .text {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: white;
+        /* padding-left:0px ; */
+        /* padding-right:0px ; */
+    }
+    
+    .bt {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    #im {
+        width: 100%;
+        height: auto;
+        opacity: 0.9;
+    }
+    
+    .img_profile {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+</style>
 
-    #btv{
-      display: none;
-      font-size:35px;
-      color:ffffff !important;
-      font-family: sans-serif;
-      text-align: center;
-      margin: auto;
-      position: absolute;
-      top:0;
-      left:0;
-      bottom:0;
-      right: 0;
-      height: 50px;
-      cursor: pointer;
-    }
-    .text{
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: white;
-      /* padding-left:0px ; */
-      /* padding-right:0px ; */
-    }
-    .bt{
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-    }
-    #im{
-      width: 100%;
-      height: auto;
-      opacity:0.9;
-    }
-    .img_profile{
-      
-      width: 50px;
-      height: 50px;
-      border-radius:50%;
-    }
-  </style>
-
-{% endblock %}
-{% block scripts %} {{block.super}}
-  <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+{% endblock %} {% block scripts %} {{block.super}}
+<script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
 {% endblock %}
